@@ -4,7 +4,7 @@ function prepend(container, newElement) {
 	let newEl = document.createElement('div');
 	newEl.classList.add('new-element');
 	newEl.innerText = newElement;
-	//let newEl = document.querySelector(newElement); С
+	//let newEl = document.querySelector(newElement); Уточнить нужно ли создавать новый элемент иои использовать уже существующий
 	cont.insertBefore(newEl, cont.firstChild);
 }
 prepend('.container', 'Гарик');
