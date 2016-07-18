@@ -50,7 +50,7 @@ map(array, mapExpression);
 
 
 
-// Slice
+// Slicegit a
 function slice(array, begin, end) {  
   let newArray = [],
     j = 0;
