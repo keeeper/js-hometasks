@@ -1,27 +1,25 @@
 //  ДЗ #1 
-function prepend(container, newElement) {	
-	let cont = document.querySelector(container); 
-	let newEl = document.createElement('div'); // Создаем новый <div>
-	newEl.classList.add('new-element'); // Добавляем ему класс
-	newEl.innerText = newElement; // Добавляем ему контент
-	cont.insertBefore(newEl, cont.firstChild);
+let section = document.querySelector('section'),
+	p = document.querySelector('p');
+
+function prepend(container, newElement) {
+	container.insertBefore(newElement, container.firstChild);
 }
-prepend('.container', 'Гарик');
+prepend(section, p);
 
 
 //  ДЗ #2
 function deleteTextNodes(el) {	
-	let target = document.querySelector(el);
-	let childNodes = target.childNodes;
-	//ES6
+	let childNodes = el.childNodes;
+	//ES6	
 	for(let node of childNodes) { // данный тип итератора доступен в пседомассивах
-		if(node.nodeType == 3){   // node - переменная в которой хранится каждый дочерний нод childNodes
-			target.removeChild(node);
+		if(childNodes[i].nodeType == 3){   // node - переменная в которой хранится каждый дочерний нод childNodes
+			el.removeChild(childNodes[i]);
 		}		
 	}
 	console.log(childNodes);
 }
-deleteTextNodes('.container');
+deleteTextNodes(section);
 
 // Експорт модулей
 module.exports = {
