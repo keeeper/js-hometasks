@@ -5,21 +5,24 @@ let section = document.querySelector('section'),
 function prepend(container, newElement) {
 	container.insertBefore(newElement, container.firstChild);
 }
-prepend(section, p);
 
 
 //  ДЗ #2
 function deleteTextNodes(el) {	
-	let childNodes = el.childNodes;
-	//ES6	
+	let childNodes = el.childNodes;	
 	for(let node of childNodes) { // данный тип итератора доступен в пседомассивах
-		if(childNodes[i].nodeType == 3){   // node - переменная в которой хранится каждый дочерний нод childNodes
-			el.removeChild(childNodes[i]);
+		if(node.nodeType == 3){   // node - переменная в которой хранится каждый дочерний нод childNodes
+			el.removeChild(node);
 		}		
 	}
-	console.log(childNodes);
+	//console.log(childNodes);
 }
+
+// Проверка ДЗ #2
 deleteTextNodes(section);
+// Проверка ДЗ #1
+prepend(section, p);
+
 
 // Експорт модулей
 module.exports = {
