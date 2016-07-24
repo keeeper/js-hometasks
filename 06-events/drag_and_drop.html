@@ -3,9 +3,43 @@
 <head>
 	<meta charset="UTF-8">
 	<title>HomeTask #6 | Drag and Drop</title>
+	<style>
+		button {
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			bottom: 10%;
+			box-sizing: border-box;
+			font: bold 16px/16px sans-serif;
+			letter-spacing: 1px;
+			padding: 16px 32px;
+			color: #fff;
+			background-color: #ff8663;
+			border-radius: 50px;
+			outline: none;
+			cursor: pointer;
+			border: none;
+			transition: all .4s;
+			text-transform: uppercase;
+		}
+		button:hover {
+			background-color: #e7e7e7;
+			color: #222;
+		}
+		div {
+			position: absolute;
+			top: 48%;
+			left: 48%;
+			width: 100px;
+			height: 100px;
+            border-radius: 50%;
+            background-color: #000;
+		}
+	</style>
 </head>
 <body>
-	<button>Add square</button>
+	<button>Add element</button>
+    <!--<div></div>-->
 	<script src="js/drag_and_drop.js"></script>
 </body>
 </html>
