@@ -1,4 +1,5 @@
 (function() {
+    // Контейнер для будущего списка городов
     let container = document.querySelector('.container');
 
     // AJAX запрос на промисе
@@ -29,7 +30,7 @@
                 return 1;
             }
             return 0;
-        })
+        });
 
         // Добавление элементов на страницу
         for ({name} of response) {
