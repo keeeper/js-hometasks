@@ -1,8 +1,12 @@
 (function() {
-    let accordeon = document.querySelector('.accordeon');
+    let accordeon = document.querySelector('.accordeon'); // Аккордеон
 
-    let toggleState = function (e) {
-        let element = e.target; // Элемент по которому кликнули
+    // Слушатель события на аккордеоне и его потомках :)
+    accordeon.addEventListener('click', toggleState);
+
+    // Обработчик события
+    function toggleState(e) {
+        let active = e.target; // Элемент по которому кликнули
             elems = document.querySelectorAll('.accordeon__trigger'); // Все элементы аккордеона
 
         // Закрытие всех ранее открытых элементов аккордеона
@@ -12,12 +16,11 @@
                 el.classList.add('is-hidden');
             }
         }
-        
+
         // Открытие элемента по которому кликнули
-        if (element.classList.contains('is-hidden')) {
-            element.classList.remove('is-hidden');
-            element.classList.add('active');
+        if (active.classList.contains('is-hidden')) {
+            active.classList.remove('is-hidden');
+            active.classList.add('active');
         }
     }
-    accordeon.addEventListener('click', toggleState);
 })();
