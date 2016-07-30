@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HomeTask #8-1 | Delete Cookies</title>
+</head>
+<style>
+    .main-wrapper{
+        width: 340px;
+        margin: 0 auto;
+    }
+    .container {
+        font: bold 16px/1 sans-serif;
+        border-collapse: collapse;
+        color: #333;
+        margin-bottom: 32px;
+        width: 100%;
+    }
+    tr:nth-child(odd) {
+        background-color: #e7e7e7;
+    }
+    tr:nth-child(even) {
+        background-color: #d7d7d7;
+    }
+    td {
+        padding: 12px 24px;
+    }
+    button {
+        border: none;
+        outline: none;
+        border-radius: 4px;
+        padding: 10px 24px;
+        color: #ffffff;
+        font: normal 14px/1 sans-serif;
+        background-color: #ff8663;
+        cursor: pointer;
+        transition: all .4s;
+    }
+    button:hover {
+        background-color: #666;
+    }
+    input {
+        width: 100%;
+        padding: 10px 16px;
+        border-radius: 4px;
+        outline: none;
+        margin-bottom: 8px;
+        box-sizing: border-box;
+        box-shadow: none;
+        border: 1px solid #d7d7d7;
+    }
+    input:focus {
+        border-color: #ff8663;
+    }
+    form button {
+        width: 100%;
+    }
+    
+</style>
+<body>
+    <div class="main-wrapper">
+        <table class="container">
+        </table>
+        <form action="#" id="addForm">
+            <input type="text" name="nameFiled" placeholder="Имя"/>
+            <input type="text" name="valueFiled" placeholder="Значение"/>
+            <input type="text" name="expiresField" placeholder="Срок годности (дней)"/>
+            <button  type="button" id="addButton">Добавить</button>
+        </form>
+    </div>
+    <script src="add-delete-cookie.js"></script>
+</body>
+</html>
