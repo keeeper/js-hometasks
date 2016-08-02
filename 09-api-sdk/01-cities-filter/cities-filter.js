@@ -21,7 +21,17 @@ container.appendChild(dropdown); // Добавляем div в родительс
 window.addEventListener('load', () => {
 	getCities('https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json').then (response => {
 		// Обработка элементов полученных из JSON объекта
-		for({name} of response) {
+		response.sort(function(a, b){
+	            var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+	            if (nameA < nameB) {
+	                return -1;
+	            }
+	            if (nameA > nameB) {
+	                return 1;
+	            }
+	            return 0;
+	        });
+		for({name} of response) {			
 			let list = document.createElement('div'); // Создаем новый элемент, которому ...
 				list.setAttribute('class', 'list'); // назначаем класс list и ...
 				list.innerText = name; // присваиваем ему зачение name.

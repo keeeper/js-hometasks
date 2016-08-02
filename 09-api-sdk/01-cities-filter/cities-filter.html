@@ -5,7 +5,7 @@
 	<!-- Basic  -->
 	<meta charset="utf-8">
     <title>HomeTask #9-1 | Cities filter {Handlebars}</title>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 	<style>
 		#container{
 		    max-width: 220px;
@@ -44,11 +44,28 @@
 		
 	</style>
 </head>
-
-	<body>
+<body>
 	<div id="container">
 		<input type="text" name="town" id="myInput">
 	</div>
-	</body>
+	<script type="text/x-handlebars-template" id="friendItemTemplate">
+	  <ul class="list" id="freindList">
+	    {{#each list}}
+	    <li class="list-item">
+	      <div class="photo">
+	        <img src="{{photo_50}}" class="photo"/>
+	      </div>
+	      <div class="info">
+	        <div class="name">
+	          <div class="title">{{first_name}} {{last_name}}</div>
+	          <div class="bdate">{{bdate}}</div>
+	        </div>
+	      </div>
+	      <div class="age">{{age}}</div>
+	    </li>
+	    {{/each}}
+	  </ul>
+	</script>
 	<script src="cities-filter.js"></script>
+</body>
 </html>
