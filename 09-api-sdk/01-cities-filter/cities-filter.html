@@ -15,17 +15,17 @@
 			padding: 0;
 
 		}
-		#container div {
+		#container .list {
 		    box-sizing: border-box;
 		    padding: 12px 24px;
 		    font: 16px/1 sans-serif;
 		    color: #fff;
 		}
-		#container div:nth-child(odd){
+		#container .list:nth-child(odd){
 		    background-color: #e7e7e7;
 		    color: #444;
 		}
-		#container div:nth-child(even){
+		#container .list:nth-child(even){
 		    background-color: #ff8663;
 		}
 		 input {
@@ -47,24 +47,12 @@
 <body>
 	<div id="container">
 		<input type="text" name="town" id="myInput">
+		<div id="results"></div>
 	</div>
-	<script type="text/x-handlebars-template" id="friendItemTemplate">
-	  <ul class="list" id="freindList">
-	    {{#each list}}
-	    <li class="list-item">
-	      <div class="photo">
-	        <img src="{{photo_50}}" class="photo"/>
-	      </div>
-	      <div class="info">
-	        <div class="name">
-	          <div class="title">{{first_name}} {{last_name}}</div>
-	          <div class="bdate">{{bdate}}</div>
-	        </div>
-	      </div>
-	      <div class="age">{{age}}</div>
-	    </li>
-	    {{/each}}
-	  </ul>
+	<script type="text/x-handlebars-template" id="citiesListTemplate">	  	  
+    	{{#each list}}	    
+    		<div class="list">{{name}}</div>	      		    
+    	{{/each}}
 	</script>
 	<script src="cities-filter.js"></script>
 </body>

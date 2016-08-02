@@ -19,24 +19,32 @@ container.appendChild(dropdown); // Добавляем div в родительс
 
 // Вызов и обработка полученного результата
 window.addEventListener('load', () => {
-	getCities('https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json').then (response => {
-		// Обработка элементов полученных из JSON объекта
+	getCities('https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json').then (response => {		
+		// Сортировка полученного списка в алфавитном порядке
 		response.sort(function(a, b){
-	            var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
-	            if (nameA < nameB) {
-	                return -1;
-	            }
-	            if (nameA > nameB) {
-	                return 1;
-	            }
-	            return 0;
-	        });
-		for({name} of response) {			
-			let list = document.createElement('div'); // Создаем новый элемент, которому ...
-				list.setAttribute('class', 'list'); // назначаем класс list и ...
-				list.innerText = name; // присваиваем ему зачение name.
-				dropdown.appendChild(list); // Добавляем его в DOM
-		}
+            var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+            if (nameA < nameB) {
+                return -1;
+            }
+            if (nameA > nameB) {
+                return 1;
+            }
+            return 0;
+        });
+		// Обработка элементов полученных из JSON объекта
+		// for({name} of response) {			
+		// 	let list = document.createElement('div'); // Создаем новый элемент, которому ...
+		// 		list.setAttribute('class', 'list'); // назначаем класс list и ...
+		// 		list.innerText = name; // присваиваем ему зачение name.
+		// 		dropdown.appendChild(list); // Добавляем его в DOM
+		// }
+
+		// Передача данных в HandleBars и получение результата
+        let source = citiesListTemplate.innerHTML;        
+        let templateFn = Handlebars.compile(source);
+        let template = templateFn({list: response,});
+        results.innerHTML = template; 
+
 	});
 });
 
@@ -46,7 +54,20 @@ myInput.addEventListener('keyup', () => { // Создаем EventListener для
 
 	getCities('https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json').then (response => {
 		let input = myInput.value; // Обявляем переменную input и присваиваем ей текущее значение поля ввода
-		// Перебираем значения всех свойств name в объектах из массива response 
+
+		// Сортировка полученного списка в алфавитном порядке
+		response.sort(function(a, b){
+            var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+            if (nameA < nameB) {
+                return -1;
+            }
+            if (nameA > nameB) {
+                return 1;
+            }
+            return 0;
+        });
+
+        // Перебираем значения всех свойств name в объектах из массива response 
 		for({name} of response) {
 			let equal = true; // Создаем временный флаг для проверки равенства
 			for (let i = 0; i < input.length; i++) { //Запускаем цикл длиной в количество символов текущего inputа, для перебора каждого символа input

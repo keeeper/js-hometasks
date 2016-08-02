@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HomeTask #9-2 | VK FriendLIst</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+  <script src="http://vk.com/js/api/openapi.js" type="text/javascript"></script>
+  <style>
+    .container{
+      max-width: 420px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      padding: 12px 24px;
+      font: 14px/1 sans-serif;
+      color: #444;
+    }
+    h3 {
+      text-align: center;
+    }
+    .list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;      
+    }
+    .list-item {
+      box-sizing: border-box;
+      padding: 16px;
+      background-color: #e7e7e7;
+      overflow: hidden;
+    }
+    .list-item:nth-child(even) {
+      background-color: #d9d9d9;
+    }
+    
+    .photo {
+      border-radius: 50%;
+      float: left;
+      margin-right: 10px;
+    }
+    .title {
+      font-weight: bold;
+      margin-bottom:6px;
+    }
+    .info {
+      float: left;      
+    }
+    .age {
+      float: right;
+      padding: 16px;
+      font-size: 18px;;
+      font-weight: bold;
+      border-radius: 30px;
+      color: #333333;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h3 id="headerInfo"></h3>
+  <div id="results"></div>
+</div>
+
+<script src="script.js"></script>
+
+<script type="text/x-handlebars-template" id="friendItemTemplate">
+  <ul class="list" id="freindList">
+    {{#each list}}
+    <li class="list-item">
+      <div class="photo">
+        <img src="{{photo_50}}" class="photo"/>
+      </div>
+      <div class="info">
+        <div class="name">
+          <div class="title">{{first_name}} {{last_name}}</div>
+          <div class="bdate">{{bdate}}</div>
+        </div>
+      </div>
+      <div class="age">{{age}}</div>
+    </li>
+    {{/each}}
+  </ul>
+</script>
+</body>
+</html>
