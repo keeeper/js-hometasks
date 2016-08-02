@@ -13,9 +13,6 @@ let getCities = function (url) {
 		xhr.send();
 	});
 };
-let dropdown = document.createElement('div'); // Создаем новый тег div (контейнер подсказок)
-dropdown.setAttribute('class', 'dropdown'); // Присваиваем divу класс dropdown
-container.appendChild(dropdown); // Добавляем div в родительский контейнер
 
 // Вызов и обработка полученного результата
 window.addEventListener('load', () => {
@@ -31,26 +28,18 @@ window.addEventListener('load', () => {
             }
             return 0;
         });
-		// Обработка элементов полученных из JSON объекта
-		// for({name} of response) {			
-		// 	let list = document.createElement('div'); // Создаем новый элемент, которому ...
-		// 		list.setAttribute('class', 'list'); // назначаем класс list и ...
-		// 		list.innerText = name; // присваиваем ему зачение name.
-		// 		dropdown.appendChild(list); // Добавляем его в DOM
-		// }
 
-		// Передача данных в HandleBars и получение результата
+		// Передача данных в HandleBars и получение списка городов
         let source = citiesListTemplate.innerHTML;        
         let templateFn = Handlebars.compile(source);
-        let template = templateFn({list: response,});
+        let template = templateFn({list: response});
         results.innerHTML = template; 
-
 	});
 });
 
 // Обработка взаимодействия с полем ввода и вывод результата
 myInput.addEventListener('keyup', () => { // Создаем EventListener для поля ввода событие keypress
-	dropdown.innerHTML = ''; // Обнуляем контейнер подсказок при каких-то изменениях в поле
+	results.innerHTML = ''; // Обнуляем контейнер подсказок при каких-то изменениях в поле
 
 	getCities('https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json').then (response => {
 		let input = myInput.value; // Обявляем переменную input и присваиваем ей текущее значение поля ввода
@@ -79,7 +68,7 @@ myInput.addEventListener('keyup', () => { // Создаем EventListener для
 				let list = document.createElement('div'); // создаем новый эелмент div, которому ...
 				list.setAttribute('class', 'list'); // назначаем класс list и ...
 				list.innerText = name; // присваиваем ему зачение name ...
-				dropdown.appendChild(list); // добавляем его в DOM
+				results.appendChild(list); // добавляем его в DOM				
 			}
 		}
 	});
