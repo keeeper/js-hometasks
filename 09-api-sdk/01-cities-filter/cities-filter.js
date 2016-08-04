@@ -60,7 +60,7 @@ myInput.addEventListener('keyup', () => { // Создаем EventListener для
 		for({name} of response) {
 			let equal = true; // Создаем временный флаг для проверки равенства
 			for (let i = 0; i < input.length; i++) { //Запускаем цикл длиной в количество символов текущего inputа, для перебора каждого символа input
-				if (input[i] !== name[i]) { // Если i-тая буква inputa  и значения свойства name не равны, то
+				if (input[i].toLowerCase() !== name[i].toLowerCase()) { // Если i-тая буква inputa  и значения свойства name не равны, то
 					equal = false;  // Меняем временный флаг
 				};
 			};
