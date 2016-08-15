@@ -38,7 +38,7 @@ window.addEventListener('load', () => {
 });
 
 // Обработка взаимодействия с полем ввода и вывод результата
-myInput.addEventListener('keyup', () => { // Создаем EventListener для поля ввода событие keypress
+myInput.addEventListener('input', () => { // Создаем EventListener для поля ввода событие keypress
 	results.innerHTML = ''; // Обнуляем контейнер подсказок при каких-то изменениях в поле
 
 	getCities('https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json').then (response => {
@@ -58,18 +58,41 @@ myInput.addEventListener('keyup', () => { // Создаем EventListener для
 
         // Перебираем значения всех свойств name в объектах из массива response 
 		for({name} of response) {
-			let equal = true; // Создаем временный флаг для проверки равенства
-			for (let i = 0; i < input.length; i++) { //Запускаем цикл длиной в количество символов текущего inputа, для перебора каждого символа input
-				if (input[i].toLowerCase() !== name[i].toLowerCase()) { // Если i-тая буква inputa  и значения свойства name не равны, то
-					equal = false;  // Меняем временный флаг
+			let equal,
+			emptyFlag = true;
+
+			// Функия фильтрации и вывода результата
+			let filtFunc = function (curLet) {
+				for(let i = 0; i < input.length; i++) {
+					if (name[curLet+i]) { // проверка наличия такого количества букв в значении свойства name 
+						if (input[i].toLowerCase() !== name[curLet+i].toLowerCase()) { // Если i-тая буква inputa  и i-тая буква от первой найденной буквы в значении свойства name не равны, то
+							equal = false;  // Меняем временный флаг
+						};
+					} else {
+						equal = false;
+					}
 				};
-			};
-			if (equal) { // Если временный файл остался TRUE, т.е. символы inputa и значения name равны, то ...
-				let list = document.createElement('div'); // создаем новый эелмент div, которому ...
-				list.setAttribute('class', 'list'); // назначаем класс list и ...
-				list.innerText = name; // присваиваем ему зачение name ...
-				results.appendChild(list); // добавляем его в DOM				
+				if (equal) { // Если временный файл остался TRUE, т.е. символы inputa и значения name равны, то ...
+					let list = document.createElement('div'); // создаем новый эелмент div, которому ...
+					list.setAttribute('class', 'list'); // назначаем класс list и ...
+					list.innerText = name; // присваиваем ему зачение name ...
+					results.appendChild(list); // добавляем его в DOM				
+				}
 			}
+
+			for(let j = 0; j < name.length; j++) { // Осуществляется перебор каджой буквы значения name
+				equal = true; // Создаем временный флаг для проверки равенства
+				if (input) {
+					if (input[0].toLowerCase() == name[j].toLowerCase()) { // Если первая буква inputa  и значения свойства name равны, то вызываем фильтрующую ф-цию
+						filtFunc(j);
+					};
+				} else {
+					emptyFlag = false;
+				}
+			};
+			if (!emptyFlag) {
+				filtFunc(0);
+			}	
 		}
 	});
 });
