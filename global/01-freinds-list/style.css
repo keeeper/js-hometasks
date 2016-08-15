@@ -1,0 +1,174 @@
+body * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+.main-wrapper{
+    font: 16px/1 'Roboto Condensed', sans-serif;
+    color: #fff;
+    margin: 0 auto;
+    width: 620px;
+    overflow: hidden;
+}
+.content-area {
+    background-color: #fff;
+}
+
+.logo {
+    margin-bottom: 18px;
+    text-align: center;
+}
+.title {
+    font-size: 16px;
+    line-height: 1;
+    padding: 15px 16px;
+    background-color: #ff8663;
+    margin: 0;
+    border-radius: 12px 12px 0 0;
+}
+.full-list {
+    width: 50%;
+    border-right: 1px solid #f0f0f0;
+    float: left;
+}
+.featured-list {
+    width: 50%;
+    float: right;
+}
+.clear {
+    clear: both;
+}
+
+.search-fld-wrapper {
+    padding: 10px 16px;
+    background-color: #f0f0f0;
+}
+.search-fld {
+    background: url('images/search-sign.png') 8px 8px no-repeat #fff;
+    padding: 8px 8px 8px 28px;
+    border: none;
+    border-radius: 28px;
+    width: 100%;
+}
+.search-fld:focus {
+    outline: none;
+}
+.list-title {
+    padding: 16px 0 10px 0;
+    margin: 0 16px;
+    font-size: 14px;
+    color: #4f4f4f;
+    font-weight: bold;
+    border-bottom: 1px solid #f0f0f0;
+}
+#results, #featured-results {
+    overflow: auto;
+    height: 334px;
+}
+
+.list-item {
+    margin: 0 6px 0 16px;
+    padding: 8px 6px;
+    list-style-type: none;
+    display: block;
+    overflow: hidden;
+    line-height: 47px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all .5s;
+    background: #fff;
+    min-width: 281px;
+    cursor: default;
+}
+.list-item:hover {
+    background-color: #f0f0f0;
+}
+.list-item__photo {
+    cursor: default;
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: 2;
+    margin-right: 12px;
+}
+.list-item__photo img {
+    border-radius: 50%;
+    float: left;
+    margin-right: 10px;
+}
+.list-item__name {
+    color: #4f4f4f;
+    float: left;
+}
+footer {
+    font-size: 16px;
+    line-height: 1;
+    padding: 10px;
+    background-color: #f0f0f0;
+    margin: 0;
+    border-radius: 0 0 12px 12px;
+    text-align: right;
+}
+.btn-save {
+    padding: 8px 12px;
+    text-align: right;
+    color: #fff;
+    background-color: #ff8663;
+    border-radius: 8px;
+    border:none;
+    outline: none;
+    cursor: pointer;
+    transition: all .5s;
+}
+.btn-save:hover {
+    background-color: #4f4f4f;
+}
+.btn-add {
+    margin-top: 16px;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    outline: none;
+    border: none;
+    float: right;
+    background: url("images/plus-sign.png") 0 0 no-repeat;
+    transition: all .5s;
+}
+#featured-results .btn-add{
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.btn-add:hover {
+    opacity: .7;
+}
+
+/* Custom Scrollbar */
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    margin-right: 5px;
+}
+::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+}
+::-webkit-scrollbar-thumb {
+    background: #c4c4c4;
+    border: none;
+    border-radius: 16px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #a4a4a4;
+}
+::-webkit-scrollbar-thumb:active {
+    background: #a4a4a4;
+}
+::-webkit-scrollbar-track {
+    background: none;
+    border: none;
+}
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
