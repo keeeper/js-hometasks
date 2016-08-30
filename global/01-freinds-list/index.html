@@ -32,7 +32,7 @@
             </div>
             <div class="list-title">Друзья в списке</div>
             <div id="featured-results">
-                <ul id="featuredList"></ul>
+                <ul id="featuredList" class="list"></ul>
             </div>
         </div>
         <div class="clear"></div>
@@ -46,7 +46,6 @@
         {{#each list}}
         <li class="list-item" onselectstart="return false" onmousedown="return false">
             <div class="list-item__photo" style="background: url({{photo_50}})">
-
             </div>
             <div class="list-item__name">
                 <p>{{first_name}} {{last_name}}</p>

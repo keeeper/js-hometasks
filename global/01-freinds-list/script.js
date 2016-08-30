@@ -41,13 +41,9 @@ new Promise(function(resolve) {
 // Основные переменные
 let mainList = document.querySelector('#friendList'), // Главный список (левый)
     secList = document.querySelector('#featuredList'), // Список избранных (правый)
-    mainListContainer = document.querySelector('.full-list'), // Контейнер главного списка
-    secListContainer = document.querySelector('.featured-list'), // Контейнер списка избранных
     activeItem, // Элемент с которым будут совершатся действия drun and drop
-    relocFlag, // Вспомогательная переменная, исп. для проверки перенесли ли элемент из одного списка в другой
     offsetX = 0, // Сдвиг
-    offsetY = 0,
-    startList = null; // Начальный список (родитель) перетаскиваемого элемента
+    offsetY = 0;
 
 // Функция, которая перемещает друзей из одного списка в другой
 function relocate(curItem) {
@@ -70,8 +66,6 @@ function mouseDown(e) { // При нажатии на элемент
     activeItem.removeAttribute('style'); // Обнулени стилей если элемент ранее перетаскивался
     offsetX = e.offsetX;
     offsetY = e.offsetY;
-    startList = e.target.closest('ul'); // Определени к какому из списков принадлежит элемент на момент начала перетаскивания
-    relocFlag = false;
 }
 function mouseMove(e) { // При перетаскивани
     if (activeItem) {  // Проверка если элемент активен
@@ -86,8 +80,12 @@ function mouseUp(e) { // При отжатии
     activeItem.style.top = "0";
     activeItem.style.zIndex = '0';
     activeItem.style.position = 'relative';
-    if(relocFlag) {
-        relocate(activeItem);
+    // Проверка возможности переноса элемента в пртивоположный список
+    let mouseUpElems = document.elementsFromPoint(e.clientX, e.clientY); // Список элементов над которыми отпущена кнопка мыши
+    if ((mouseUpElems[0].closest('#friendList')) || (mouseUpElems[0].closest('#featuredList'))) { //Если мышь отпущена над одним из списков
+        if ((activeItem.closest('ul')) != (mouseUpElems[0].closest('ul'))) {
+            relocate(activeItem);
+        }
     }
     activeItem = false;
 }
@@ -102,25 +100,13 @@ document.addEventListener('mousemove', mouseMove);
 // Перемещение элемента посредством клика по кнопке
 mainList.addEventListener('click', (e) => { // в правый список
     if (e.target.getAttribute('class') == 'btn-add') {
-        relocate(e.target.closest('.list-item'));
-    };
+    relocate(e.target.closest('.list-item'));
+};
 });
 secList.addEventListener('click', (e) => { // в левый список
     if (e.target.getAttribute('class') == 'btn-add') {
-        relocate(e.target.parentNode);
-    };
-});
-
-// Проверка возможности переноса элемента в пртивоположный список
-mainListContainer.addEventListener('mouseenter', (e) => {
-    if (startList.getAttribute('id') == 'featuredList') {
-        relocFlag = true;
-    };
-});
-secListContainer.addEventListener('mouseenter', (e) => {
-    if (startList.getAttribute('id') == 'friendList') {
-        relocFlag = true;
-    };
+    relocate(e.target.parentNode);
+};
 });
 
 // Фильтры
@@ -195,13 +181,13 @@ let searchFunc = function (arr, input)  {
 document.querySelector('.full-list .search-fld').addEventListener('keyup', () => {
     let frListArr = document.querySelectorAll('#friendList li'), // объявление переменной, которая хранит массив из элементов основного списка
     input = document.querySelector('.full-list .search-fld').value; // объявление переменной, которая хранит значение основного поля ввода
-    searchFunc(frListArr, input);
+searchFunc(frListArr, input);
 });
 
 document.querySelector('.featured-list .search-fld').addEventListener('keyup', () => {
     let featListArr = document.querySelectorAll('#featuredList li'), // объявление переменной, которая хранит массив из элементов второго списка
     input = document.querySelector('.featured-list .search-fld').value; // объявление переменной, которая хранит значение основного поля ввода
-    searchFunc(featListArr, input);
+searchFunc(featListArr, input);
 });
 
 // Localstorage
@@ -209,7 +195,8 @@ document.querySelector('.featured-list .search-fld').addEventListener('keyup', (
 document.querySelector('.btn-save').addEventListener('click', () => {
     window.localStorage.clear();
     let featListArr = document.querySelectorAll('#featuredList li'),
-        frListArr = document.querySelectorAll('#friendList li');
+        frListArr = document.querySelectorAll('#friendList li'),
+        successMessage = document.querySelector('.message');
     for (let i = 0; i < featListArr.length; i++) {
         localStorage.setItem(`sec-item${[i]}`,featListArr[i].innerHTML);
     }
