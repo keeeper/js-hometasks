@@ -100,13 +100,13 @@ document.addEventListener('mousemove', mouseMove);
 // Перемещение элемента посредством клика по кнопке
 mainList.addEventListener('click', (e) => { // в правый список
     if (e.target.getAttribute('class') == 'btn-add') {
-    relocate(e.target.closest('.list-item'));
-};
+        relocate(e.target.closest('.list-item'));
+    };
 });
 secList.addEventListener('click', (e) => { // в левый список
     if (e.target.getAttribute('class') == 'btn-add') {
-    relocate(e.target.parentNode);
-};
+        relocate(e.target.parentNode);
+    };
 });
 
 // Фильтры
@@ -203,6 +203,7 @@ document.querySelector('.btn-save').addEventListener('click', () => {
     for (let i = 0; i < frListArr.length; i++) {
         localStorage.setItem(`item${[i]}`,frListArr[i].innerHTML);
     }
+
 });
 // Загрузка данных из localStorage
 window.addEventListener("load",function() {
